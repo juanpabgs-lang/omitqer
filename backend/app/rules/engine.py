@@ -230,7 +230,7 @@ def evaluate(
     if tipo in {"kinesiologia", "laboratorio", "fonoaudiologia"}:
         cuir = cuir or {}
         c_ok = bool(cuir.get("valid"))
-        if not c_ok and not fields_present.get("orden_medica"):
+        if not c_ok and not fields_present.get("orden_medica") and "orden_medica" not in missing:
             missing.append("orden_medica")
         checks.append(
             Check(

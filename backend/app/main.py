@@ -73,16 +73,22 @@ class PrecheckIn(BaseModel):
 
 
 @app.post("/api/precheck")
-async def precheck(body: PrecheckIn | None = None, file: UploadFile | None = File(None), sample_key: str | None = Form(None)):
+def precheck(body: PrecheckIn):
     conn = db()
     try:
-        if file is not None:
-            data = await file.read()
-            return services.precheck(conn, upload={"data": data, "filename": file.filename or ""})
-        key = (body.sample_key if body else None) or sample_key
-        if not key:
-            raise HTTPException(400, "sample_key o archivo")
-        return services.precheck(conn, sample_key=key, overrides=(body.overrides if body else None))
+        if not body.sample_key:
+            raise HTTPException(400, "sample_key requerido")
+        return services.precheck(conn, sample_key=body.sample_key, overrides=body.overrides)
+    except ValueError as e:
+        raise HTTPException(400, str(e))
+
+
+@app.post("/api/precheck/upload")
+async def precheck_upload(file: UploadFile = File(...)):
+    conn = db()
+    try:
+        data = await file.read()
+        return services.precheck(conn, upload={"data": data, "filename": file.filename or ""})
     except ValueError as e:
         raise HTTPException(400, str(e))
 
