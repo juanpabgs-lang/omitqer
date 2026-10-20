@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/500.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/source-sans-3/400.css";
+@import "@fontsource/source-sans-3/600.css";
+
+@theme {
+  --font-sans: "Inter Variable", Inter, Helvetica, Arial, sans-serif;
+  --font-omint: "Poppins", "Source Sans 3", Helvetica, sans-serif;
+  --color-paper: #f1f1f1;
+  --color-panel: #fdfdfd;
+  --color-ink: #111111;
+  --color-mute: #5c5c5c;
+  --color-line: #d8d8d8;
+  --color-mint: #00fe99;
+  --color-navy: #002583;
+  --color-gold: #aa9756;
+  --color-warn: #b42318;
+}
+
+html,
+body,
+#root {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+.omint {
+  font-family: var(--font-omint);
+}
+
+.hairline {
+  height: 1px;
+  background: var(--color-line);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
