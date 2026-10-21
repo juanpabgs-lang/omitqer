@@ -1,0 +1,7 @@
+{
+  "name": "OMINT Reintegros",
+  "ports": [
+    { "name": "OMINT UI", "port": 5178 },
+    { "name": "OMINT API", "port": 8018 }
+  ]
+}

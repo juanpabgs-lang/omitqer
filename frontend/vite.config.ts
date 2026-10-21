@@ -8,6 +8,7 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 5178,
     strictPort: true,
+    allowedHosts: true,
     proxy: {
       "/api": "http://127.0.0.1:8018",
     },
@@ -16,5 +17,6 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 5178,
     strictPort: true,
+    allowedHosts: true,
   },
 });
